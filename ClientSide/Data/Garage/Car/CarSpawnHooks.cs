@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using CMS21Together.ClientSide.Data.Handle;
 using CMS21Together.Shared.Data;
@@ -20,6 +20,7 @@ public static class CarSpawnHooks
 	public static void Reset()
 	{
 		listenToLoad = true;
+		listenToDelete = true;
 	}
 
 	[HarmonyPatch(typeof(CarLoader), nameof(CarLoader.LoadCarFromFile), typeof(string))]
