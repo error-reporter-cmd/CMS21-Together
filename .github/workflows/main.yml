@@ -24,8 +24,14 @@ jobs:
     - name: Restore NuGet packages
       run: nuget restore CMS21-Together.sln
     
-    - name: Build solution
-      run: msbuild CMS21-Together.sln /p:Configuration=Release /p:Platform="Any CPU"
+    - name: Build CMS21-Together-Server
+      run: msbuild CMS21-Together-Server/CMS21-Together-Server.csproj /p:Configuration=Release /p:Platform="Any CPU"
+    
+    - name: Build CMS21-Together-Client
+      run: msbuild CMS21-Together-Client/CMS21-Together.csproj /p:Configuration=Release /p:Platform="Any CPU"
+    
+    - name: Build CMS21-Together-Core
+      run: msbuild CMS21-Together-Core/CMS21-Together-Core.csproj /p:Configuration=Release /p:Platform="Any CPU"
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
