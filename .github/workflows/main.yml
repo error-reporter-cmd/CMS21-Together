@@ -25,13 +25,13 @@ jobs:
       run: nuget restore CMS21-Together.sln
     
     - name: Build CMS21-Together-Server
-      run: msbuild CMS21-Together-Server/CMS21-Together-Server.csproj /p:Configuration=Release /p:Platform="Any CPU"
+      run: msbuild CMS21-Together-Server/CMS21-Together-Server.csproj /p:Configuration=Release /p:Platform="Any CPU" /p:OutputPath=bin\Release\
     
     - name: Build CMS21-Together-Client
-      run: msbuild CMS21-Together-Client/CMS21-Together.csproj /p:Configuration=Release /p:Platform="Any CPU"
+      run: msbuild CMS21-Together-Client/CMS21-Together.csproj /p:Configuration=Release /p:Platform="Any CPU" /p:OutputPath=bin\Release\
     
     - name: Build CMS21-Together-Core
-      run: msbuild CMS21-Together-Core/CMS21-Together-Core.csproj /p:Configuration=Release /p:Platform="Any CPU"
+      run: msbuild CMS21-Together-Core/CMS21-Together-Core.csproj /p:Configuration=Release /p:Platform="Any CPU" /p:OutputPath=bin\Release\
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
@@ -39,7 +39,7 @@ jobs:
       with:
         name: build-artifacts
         path: |
+          CMS21-Together-Server/bin/Release/
           CMS21-Together-Client/bin/Release/
           CMS21-Together-Core/bin/Release/
-          CMS21-Together-Server/bin/Release/
         retention-days: 30
