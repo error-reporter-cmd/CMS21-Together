@@ -28,7 +28,7 @@ jobs:
       run: msbuild CMS21-Together.sln /p:Configuration=Release /p:Platform="Any CPU"
     
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: success()
       with:
         name: build-artifacts
