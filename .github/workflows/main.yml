@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+    branches: [ MainMod ]
+  pull_request:
+    branches: [ MainMod ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+    
+    - name: Restore NuGet packages
+      run: nuget restore CMS21-Together.sln
+    
+    - name: Build Solution
+      run: msbuild CMS21-Together.sln /p:Configuration=Release /p:Platform="Any CPU"
+    
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: CMS21-Together
+        path: bin/Release/
+        retention-days: 30
